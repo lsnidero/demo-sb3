@@ -1,0 +1,26 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+    openshift.io/host.generated: "true"
+  labels:
+    app: sb-test-j17
+    app.kubernetes.io/component: sb-test-j17
+    app.kubernetes.io/instance: sb-test-j17
+    app.kubernetes.io/name: sb-test-j17
+    app.kubernetes.io/part-of: sb-test-j17
+    app.openshift.io/runtime-version: java-17
+  name: sb-test-j17
+  namespace: lsnidero
+spec:
+  port:
+    targetPort: 9080-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: sb-test-j17
+    weight: 100
+  wildcardPolicy: None
