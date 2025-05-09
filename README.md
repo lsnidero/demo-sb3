@@ -2,18 +2,32 @@
 
 This project contains a partial implementation of the server side part of some jmeter tests.
 
-It compiles java 17 compatible bytecode in order to use the  
+It compiles java 17 and java 21 compatible bytecode using different profiles.
+Java 21 is the default profile.
+
+## Building
 
 In order to build the project do:
 
+Java 21:
 
 ```shell
 $ ./mvnw clean package && podman build  -t quay.io/rh_ee_lsnidero/sb-test-j21:latest --file Dockerfile
 ```
  
+Java 17:
+
 ```shell
 $ ./mvnw -P java-17 clean package && podman build  -t quay.io/rh_ee_lsnidero/sb-test-j17:latest --file Dockerfile.j17
 ```
+
+Java 8:
+
+```shell
+$ podman build -t quay.io/rh_ee_lsnidero/sb-test-j8:latest --file java8/Dockerfile
+```
+
+## Running
 
 Using ParallelGC
 
