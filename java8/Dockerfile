@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/openjdk-8:1.16-1.1687182685
+FROM registry.redhat.io/ubi8/openjdk-8:1.16-1.1687182685
 COPY CheckOperatingSystemMXBean.java /tmp
 WORKDIR /tmp
 RUN javac CheckOperatingSystemMXBean.java
