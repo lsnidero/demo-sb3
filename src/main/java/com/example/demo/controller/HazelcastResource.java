@@ -1,7 +1,7 @@
-package com.example.demo.resources;
+package com.example.demo.controller;
 
 import com.example.demo.commons.Values;
-import com.example.demo.resources.model.MockCache;
+import com.example.demo.controller.model.MockCache;
 import com.example.demo.service.CacheService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

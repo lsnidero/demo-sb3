@@ -1,6 +1,6 @@
-package com.example.demo.resources;
+package com.example.demo.controller;
 
-import com.example.demo.resources.model.MockFile;
+import com.example.demo.controller.model.MockFile;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;

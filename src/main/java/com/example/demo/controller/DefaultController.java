@@ -1,4 +1,4 @@
-package com.example.demo.resources;
+package com.example.demo.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

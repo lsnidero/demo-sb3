@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.resources.model.MockUser;
+import com.example.demo.controller.model.MockUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;

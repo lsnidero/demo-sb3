@@ -1,7 +1,7 @@
-package com.example.demo.resources;
+package com.example.demo.controller;
 
 import com.example.demo.commons.Values;
-import com.example.demo.resources.model.MockErrorDemoUser;
+import com.example.demo.controller.model.MockErrorDemoUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;

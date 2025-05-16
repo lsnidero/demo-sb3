@@ -1,4 +1,4 @@
-package com.example.demo.resources.model;
+package com.example.demo.controller.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
