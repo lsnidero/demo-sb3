@@ -20,6 +20,13 @@ public class DefaultController {
                                 <h1>Welcome on %s</h1>
                                 <h2>Some useful ENV VARS:</h2>
                                 <p>%s</p>
+                                <h2>Some useful links:</h2>
+                                <p>
+                                  <ul>
+                                    <li><a href="/v3/api-docs">OpenAPI v3 docs</a></li>
+                                    <li><a href="/swagger-ui/index.html">SwaggerUI</a></li>
+                                  </ul>
+                                </p>
                             </body>
                         </html>
                     """;

@@ -2,7 +2,9 @@ package com.example.demo.resources;
 
 import com.example.demo.commons.Values;
 import com.example.demo.resources.model.MockCache;
+import com.example.demo.service.CacheService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/hazelcast")
 public class HazelcastResource {
 
+    private final CacheService cacheService;
+
+    public HazelcastResource(@Autowired CacheService cacheService) {
+        this.cacheService = cacheService;
+    }
+
     /*
     @PostMapping(value = "/push", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<MockCache> push(@RequestBody(required = false) MockCache mockCache) {
@@ -36,8 +44,8 @@ public class HazelcastResource {
     @PostMapping(value = "/push", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<String> push(@RequestBody(required = false) MockCache mockCache) {
         log.info("Hit push");
-
-        return new ResponseEntity<>("42", HttpStatus.OK);
+        String newKey = cacheService.generateKey();
+        return new ResponseEntity<>(newKey, HttpStatus.OK);
     }
 
     @GetMapping(value = "/pull/{keyGenerated}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaTypes.HAL_JSON_VALUE)

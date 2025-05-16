@@ -1,0 +1,2 @@
+INSERT INTO bookmarks (id,title,url) VALUES (bookmark_id_seq.nextval, 'Oracle Datasources in SPRING','https://medium.com/oracledevs/spring-data-jdbc-with-the-oracle-database-23c-for-java-developers-getting-started-guide-1c4640fc8d27');
+INSERT INTO bookmarks (id,title,url) VALUES (bookmark_id_seq.nextval, 'FlyWay DB migration in Spring','https://blog.jetbrains.com/idea/2024/11/how-to-use-flyway-for-database-migrations-in-spring-boot-applications/');

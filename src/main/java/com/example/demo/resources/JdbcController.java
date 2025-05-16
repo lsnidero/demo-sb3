@@ -1,7 +1,9 @@
 package com.example.demo.resources;
 
 import com.example.demo.resources.model.MockUser;
+import com.example.demo.service.UsersJdbcService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpEntity;
@@ -17,10 +19,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequestMapping("/jdbc")
 public class JdbcController {
+
+    private final UsersJdbcService usersJdbcService;
+
+    public JdbcController(@Autowired UsersJdbcService usersJdbcService) {
+        this.usersJdbcService = usersJdbcService;
+    }
 
     @PostMapping(value = "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity<MockUser> createUser(@RequestBody MockUser user) {
@@ -39,8 +49,9 @@ public class JdbcController {
     @GetMapping(value = "/getUser/{userId}", produces = MediaTypes.HAL_JSON_VALUE)
     public HttpEntity<MockUser> getUser(@PathVariable String userId) {
         log.info("Hit getUser {}", userId);
-        MockUser user = MockUser.defaultUser();
+        MockUser user = usersJdbcService.findUserById(userId);
         user.add(Link.of(String.format("http://localhost:9080/jdbc/getUser/%s", user.getId())));
+
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
