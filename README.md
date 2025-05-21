@@ -30,10 +30,10 @@ $ podman build -t quay.io/rh_ee_lsnidero/sb-test-j8:latest --file java8/Dockerfi
 ## Starting database container
 
 ```shell
-$ podman run -p 1521:1521 -e TZ="Europe/Rome" -e ORACLE_PASSWORD=demosb -e ORACLE_DATABASE=demosb -e APP_USER=demosb -e APP_USER_PASSWORD=demosb  docker.io/gvenzl/oracle-xe:21-slim-faststart
+$ podman run --replace -it --name oracle-demosb -p 1521:1521 -e TZ="Europe/Rome" -e ORACLE_PASSWORD=demosb -e ORACLE_DATABASE=demosb -e APP_USER=demosb -e APP_USER_PASSWORD=demosb  docker.io/gvenzl/oracle-xe:21-slim-faststart
 ```
 
-# Starting  Hazelcast container
+## Starting  Hazelcast container
 
 Starting hazelcast with two nodes in multicast mode. The auto-discovery system should automatically create a cluster.
 Search a line similar to this in hazelcast output:
@@ -65,6 +65,12 @@ Management center
 
 ```shell
 $ podman run --replace -it --name hazelcast-mgmt -p 18080:8080 --net hazelnet --network-alias hazelcast-mgmt hazelcast/management-center:5.5.0
+```
+
+## Starting MongoDB container
+
+```shell
+$ podman run --replace -it --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin  -e MONGO_INITDB_DATABASE=demosb  docker.io/library/mongo:8.0.9
 ```
 
 ## Running

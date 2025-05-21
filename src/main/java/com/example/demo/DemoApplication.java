@@ -1,15 +1,16 @@
 package com.example.demo;
 
+import com.hazelcast.jet.function.RunnableEx;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DemoApplication {
+    public static void main(String[] args) {
+        SpringApplication springApplication = new SpringApplication(DemoApplication.class);
+        springApplication.setLazyInitialization(true);
+        springApplication.run(args);
+        //SpringApplication.run(DemoApplication.class, args);
 
-
-
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
-
+    }
 }
