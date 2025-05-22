@@ -58,13 +58,13 @@ spec:
           value: '-XX:NativeMemoryTracking=summary -Xlog:gc*,safepoint=info:file=gc_%p_%t.log:time:filecount=4,filesize=50M'
         - name: GC_MAX_METASPACE_SIZE
           value: '256'
-        resources:
-          limits:
-            cpu: 500m
-            memory: 1Gi
-          requests:
-            cpu: 200m
-            memory: 500Mi
+#        resources:
+#          limits:
+#            cpu: 500m
+#            memory: 1Gi
+#          requests:
+#            cpu: 200m
+#            memory: 500Mi
         livenessProbe:
           httpGet:
             path: /actuator/health/liveness
@@ -87,6 +87,9 @@ spec:
           failureThreshold: 30
           periodSeconds: 15
         image: quay.io/rh_ee_lsnidero/sb-test-j21:latest
+        envFrom:
+          - configMapRef:
+              name: sb-test-j21
         imagePullPolicy: Always
         name: sb-test-j21
         ports:

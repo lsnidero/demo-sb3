@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- configmap-initdb.yml
+- deployment.yml
+- service-account.yml
+- service.yml
+
+configMapGenerator:
+- literals:
+  - ORACLE_PASSWORD=demosb
+  - ORACLE_DATABASE=demosb
+  - APP_USER=demosb
+  - APP_USER_PASSWORD=demosb
+  - TZ=Europe/Rome
+  name: oracle-db-envs

@@ -73,7 +73,7 @@ $ podman run --replace -it --name hazelcast-mgmt -p 18080:8080 --net hazelnet --
 $ podman run --replace -it --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin  -e MONGO_INITDB_DATABASE=demosb  docker.io/library/mongo:8.0.9
 ```
 
-## Running
+## Running locally
 
 Using ParallelGC
 
@@ -106,4 +106,40 @@ Using default
 $ podman run -it -v $(pwd)/vol:/data:Z --name sb3-app --replace -m 500m --cpus=1  -p 9080:9080 -e JAVA_VERBOSE=true -e JAVA_OPTS_APPEND='-XX:NativeMemoryTracking=summary -Xlog:gc*,safepoint=info:file=/data/default_gc_%p_%t.log:time:filecount=4,filesize=50M' -e GC_MAX_METASPACE_SIZE=256  quay.io/rh_ee_lsnidero/sb-test:java-21
 ```
 
+## Running on OpenShift
 
+### Mongo DB:
+```shell
+$ oc new-app \
+    -e MONGODB_USER=admin \
+    -e MONGODB_PASSWORD=admin \
+    -e MONGODB_DATABASE=demosb \
+    -e MONGODB_ADMIN_PASSWORD=admin \
+    registry.access.redhat.com/rhscl/mongodb-26-rhel7
+```
+
+### Oracle:
+
+```shell
+$ oc apply -k openshift/oracle 
+
+```
+And permit privileged execution
+
+```shell
+oc adm policy add-scc-to-user privileged -z oracle
+```
+
+### Hazelcast
+
+Add template to namespace:
+
+```shell
+$ oc apply -f openshift/hazelcast/hazelcast.yaml
+```
+
+Apply template:
+
+```shell
+$ oc process hazelcast  --param NAMESPACE=<namespace_name> -o yaml | oc apply -f -
+```

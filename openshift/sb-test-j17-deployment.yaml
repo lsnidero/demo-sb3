@@ -87,6 +87,9 @@ spec:
           failureThreshold: 30
           periodSeconds: 15
         image: quay.io/rh_ee_lsnidero/sb-test-j17:latest
+        envFrom:
+          - configMapRef:
+              name: sb-test-j17
         imagePullPolicy: Always
         name: sb-test-j17
         ports:
