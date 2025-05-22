@@ -22,7 +22,8 @@ public class UsersJdbcService {
     public MockUser findUserById(String userId) {
 
         List<MockUser> query = jdbcTemplate.query("Select EXTERNAL_ID, EMAIL, AGE FROM USERS WHERE EXTERNAL_ID = ?", (rs, rowNum) -> new MockUser(String.valueOf(rs.getInt("AGE")), rs.getString("EMAIL"), UUID.fromString(rs.getString("EXTERNAL_ID"))), userId);
-        return query.getFirst();
+        //return query.getFirst();
+        return query.get(0);
     }
 
 }

@@ -33,7 +33,8 @@ public class HazelcastConfiguration {
         // Configura le porte dei membri del cluster
         ClientNetworkConfig networkConfig = clientConfig.getNetworkConfig();
         networkConfig.setSmartRouting(false);
-        networkConfig.addAddress(addresses.toArray(String[]::new));
+        //networkConfig.addAddress(addresses.toArray(String[]::new));
+        networkConfig.addAddress(addresses.toArray(new String[]{}));
 
         log.info("Configured Hazelcast Cache cluster \"{}\" with addresses {}", clusterName, addresses);
 

@@ -7,6 +7,7 @@ import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -24,7 +25,10 @@ public class CustomHealthCheck extends AbstractHealthIndicator {
         if (configurationService.customHealthSwitch()) {
             builder.up();
         } else {
-            builder.withDetails(Map.of("reason","disabled on DB")).down();
+            Map<String,String> reason = new HashMap<>();
+            reason.put("reason","disabled on DB");
+            builder.withDetails(reason).down();
+            //builder.withDetails(Map.of("reason","disabled on DB")).down();
         }
     }
 }

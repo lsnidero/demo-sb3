@@ -12,10 +12,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityWebFilterChain(HttpSecurity http) throws Exception {
+
+/*
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**","/","/swagger-ui/*","/v3/*").permitAll()
                         .anyRequest().authenticated())
                 .build();
+
+ */
+        return http.csrf().disable().authorizeRequests().anyRequest().permitAll().and().build();
+
+
     }
 }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -35,12 +38,15 @@ public class RestConnectorController {
     public ResponseEntity<MockAnagrafica> getAcronyms() {
         log.info("Hit getAcronyms");
 
-        MockAnagrafica mockAnagrafica = new MockAnagrafica("000", "Estrazione avvenuta con successo", List.of(
-                "3EZB0",
-                "BEAR0",
-                "LOCA0",
-                "DARW0",
-                "PUHA0"));
+        //MockAnagrafica mockAnagrafica = new MockAnagrafica("000", "Estrazione avvenuta con successo", List.of(
+        //        "3EZB0",
+        //        "BEAR0",
+        //        "LOCA0",
+        //        "DARW0",
+        //        "PUHA0"));
+        String[] acronyms = {"3EZB0", "BEAR0", "LOCA0", "DARW0", "PUHA0"};
+
+        MockAnagrafica mockAnagrafica = new MockAnagrafica("000", "Estrazione avvenuta con successo", Arrays.asList(acronyms));
         mockAnagrafica.add(Link.of(Values.BASE_URL + "/getAcronyms"));
         return new ResponseEntity<>(mockAnagrafica, HttpStatus.OK);
     }

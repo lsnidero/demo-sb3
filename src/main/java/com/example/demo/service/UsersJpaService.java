@@ -22,7 +22,8 @@ public class UsersJpaService {
 
     public MockUser findUserById(String userId) {
 
-        UserEntity userEntity = userRepository.findByExternalId(userId).getFirst();
+        //UserEntity userEntity = userRepository.findByExternalId(userId).getFirst();
+        UserEntity userEntity = userRepository.findByExternalId(userId).get(0);
         log.info("Found user {}", userEntity);
         return new MockUser(String.valueOf(userEntity.getAge()), userEntity.getEmail(), UUID.fromString(userEntity.getExternalId()));
 
